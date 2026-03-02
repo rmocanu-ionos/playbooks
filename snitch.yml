@@ -3,17 +3,15 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: Snitch on the runner
-      ansible.builtin.debug:
-        msg: >
-          Runner ENVIRONMENT={{ lookup('env', 'ENVIRONMENT') | default('NOT SET') }}
-          | HOSTNAME={{ lookup('env', 'HOSTNAME') | default(ansible_hostname | default('UNKNOWN')) }}
-          | IP={{ ansible_default_ipv4.address | default('UNKNOWN') }}
-
-    - name: Get IP the hard way
-      ansible.builtin.command: hostname -I
-      register: ip_result
-
-    - name: Print IP
-      ansible.builtin.debug:
-        msg: "Runner IP: {{ ip_result.stdout }}"
+    - name: Test Runner Routing                                                                                                                                                           
+    hosts: localhost                                                                                                                                                                    
+    connection: local                                                                                                                                                                   
+    gather_facts: false                                                                                                                                                                 
+    tasks:                                                                                                                                                                              
+      - name: Wait 60 seconds to simulate work                                                                                                                                          
+        ansible.builtin.pause:                                                                                                                                                          
+          seconds: 60                                                                                                                                                                   
+                                                                                                                                                                                        
+      - name: Snitch on the runner                                                                                                                                                      
+        ansible.builtin.debug:
+          msg: "ENVIRONMENT={{ lookup('env', 'ENVIRONMENT') | default('NOT SET') }} | HOSTNAME={{ lookup('env', 'HOSTNAME') | default('UNKNOWN') }}"
