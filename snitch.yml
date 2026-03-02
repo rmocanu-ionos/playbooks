@@ -1,17 +1,12 @@
-- name: Test Runner Routing
-  hosts: localhost
-  connection: local
-  gather_facts: false
-  tasks:
-    - name: Test Runner Routing                                                                                                                                                           
-    hosts: localhost                                                                                                                                                                    
-    connection: local                                                                                                                                                                   
-    gather_facts: false                                                                                                                                                                 
-    tasks:                                                                                                                                                                              
-      - name: Wait 60 seconds to simulate work                                                                                                                                          
-        ansible.builtin.pause:                                                                                                                                                          
-          seconds: 60                                                                                                                                                                   
-                                                                                                                                                                                        
-      - name: Snitch on the runner                                                                                                                                                      
-        ansible.builtin.debug:
-          msg: "ENVIRONMENT={{ lookup('env', 'ENVIRONMENT') | default('NOT SET') }} | HOSTNAME={{ lookup('env', 'HOSTNAME') | default('UNKNOWN') }}"
+- name: Test Runner Routing                                                                                                                                                           
+  hosts: localhost                                                                                                                                                                    
+  connection: local                                                                                                                                                                   
+  gather_facts: false                                                                                                                                                                 
+  tasks:                                                                                                                                                                              
+    - name: Wait 60 seconds to simulate work                                                                                                                                          
+      ansible.builtin.pause:                                                                                                                                                          
+        seconds: 60                                                                                                                                                                   
+                                                                                                                                                                                      
+    - name: Snitch on the runner                                                                                                                                                      
+      ansible.builtin.debug:
+        msg: "ENVIRONMENT={{ lookup('env', 'ENVIRONMENT') | default('NOT SET') }} | HOSTNAME={{ lookup('env', 'HOSTNAME') | default('UNKNOWN') }}"
